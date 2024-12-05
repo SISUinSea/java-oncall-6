@@ -7,13 +7,13 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public enum DayOfWeek {
-    SUNDAY("일", 1),
-    MONDAY("월", 2),
-    TUESDAY("화", 3),
-    WEDNESDAY("수", 4),
-    THURSDAY("목", 5),
-    FRIDAY("금", 6),
-    SATURDAY("토", 7);
+    SUNDAY("일", 0),
+    MONDAY("월", 1),
+    TUESDAY("화", 2),
+    WEDNESDAY("수", 3),
+    THURSDAY("목", 4),
+    FRIDAY("금", 5),
+    SATURDAY("토", 6);
 
     private String name;
     private Integer id;
