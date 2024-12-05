@@ -35,7 +35,7 @@ public class Application {
         totalScheduleWorker.addAll(weekDaySchedule.getSchedule());
         totalScheduleWorker.addAll(holidaySchedule.getSchedule());
         if (totalScheduleWorker.size() > 35 || totalScheduleWorker.size() < 5) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 입력 값입니다. 다시 입력해 주세요.");
         }
     }
 

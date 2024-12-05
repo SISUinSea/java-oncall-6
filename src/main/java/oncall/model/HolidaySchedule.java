@@ -21,14 +21,14 @@ public class HolidaySchedule {
         validateWorkerNameLengthIsBetween1to5(scheduleInputList);
         Set<String> duplicateTest = new HashSet<>(scheduleInputList);
         if (duplicateTest.size() != scheduleInputList.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 입력 값입니다. 다시 입력해 주세요.\n");
         }
     }
 
     private static void validateWorkerNameLengthIsBetween1to5(List<String> scheduleInputList) {
         scheduleInputList.forEach(workerName -> {
             if (workerName.length() > 5 || workerName.isEmpty()) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("[ERROR] 유효하지 않은 입력 값입니다. 다시 입력해 주세요.\n");
             }
         });
     }

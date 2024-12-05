@@ -30,7 +30,7 @@ public class Calendar {
         if (endDate31.contains(month)) {
             return 31;
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException("[ERROR] 유효하지 않은 입력 값입니다. 다시 입력해 주세요.\n");
     }
 
     public Integer getEndDate() {
@@ -53,6 +53,17 @@ public class Calendar {
         if (Holiday.isHoliday(month, day)) {
             return true;
         }
+        return false;
+    }
+
+    public boolean isWeekDayHoliday(Integer day) {
+        if (getDayOfWeekName(day).equals("토") || getDayOfWeekName(day).equals("일")) {
+            return false;
+        }
+        if (Holiday.isHoliday(month, day)) {
+            return true;
+        }
+
         return false;
     }
 }
