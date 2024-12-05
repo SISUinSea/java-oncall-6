@@ -1,9 +1,10 @@
 package oncall.model;
 
-import java.time.DayOfWeek;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import oncall.util.DayOfWeek;
+import oncall.util.Holiday;
 
 public class Calendar {
     private final Integer month;
@@ -15,33 +16,8 @@ public class Calendar {
 
     public Calendar(Integer month, String firstDayOfWeek) {
         this.month = month;
-        this.firstDayOfWeek = getDayOfWeekByName(firstDayOfWeek);
+        this.firstDayOfWeek = DayOfWeek.getDayOfWeek(firstDayOfWeek);
         this.endDate = getEndDateByMonth(month);
-    }
-
-    private static DayOfWeek getDayOfWeekByName(String name) {
-        if (name.equals("일")) {
-            return DayOfWeek.SUNDAY;
-        }
-        if (name.equals("월")) {
-            return DayOfWeek.MONDAY;
-        }
-        if (name.equals("화")) {
-            return DayOfWeek.TUESDAY;
-        }
-        if (name.equals("수")) {
-            return DayOfWeek.WEDNESDAY;
-        }
-        if (name.equals("목")) {
-            return DayOfWeek.THURSDAY;
-        }
-        if (name.equals("금")) {
-            return DayOfWeek.FRIDAY;
-        }
-        if (name.equals("토")){
-            return DayOfWeek.SATURDAY;
-        }
-        throw new IllegalArgumentException();
     }
 
     private Integer getEndDateByMonth(Integer month) {
@@ -63,5 +39,20 @@ public class Calendar {
 
     public Integer getMonth() {
         return month;
+    }
+
+    public String getDayOfWeekName(Integer day) {
+        return DayOfWeek.getDayOfWeek((firstDayOfWeek.getId() + day - 1) % 7 + 1).getName();
+    }
+
+    public boolean isHoliday(Integer day) {
+        String dayOfWeekName = getDayOfWeekName(day);
+        if (dayOfWeekName.equals(DayOfWeek.SUNDAY.getName()) || dayOfWeekName.equals(DayOfWeek.SATURDAY.getName())) {
+            return true;
+        }
+        if (Holiday.isHoliday(month, day)) {
+            return true;
+        }
+        return false;
     }
 }

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Holiday {
-    private final List<Set<Integer>> holiday = new ArrayList<>();
+    private final static List<Set<Integer>> holiday = new ArrayList<>();
 
     public Holiday() {
         for (int i = 0; i < 12 + 1; i++) {
@@ -23,7 +23,7 @@ public class Holiday {
         holiday.get(12).add(25);
     }
 
-    public boolean isHoliday(Integer month, Integer day) {
+    public static boolean isHoliday(Integer month, Integer day) {
         return holiday.get(month).contains(day);
     }
 }
