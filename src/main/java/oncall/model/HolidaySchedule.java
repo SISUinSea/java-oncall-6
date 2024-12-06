@@ -6,6 +6,8 @@ import java.util.Deque;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import oncall.util.CustomException;
+import oncall.util.ErrorMessage;
 
 public class HolidaySchedule {
     private List<String> schedule;
@@ -21,14 +23,14 @@ public class HolidaySchedule {
         validateWorkerNameLengthIsBetween1to5(scheduleInputList);
         Set<String> duplicateTest = new HashSet<>(scheduleInputList);
         if (duplicateTest.size() != scheduleInputList.size()) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 입력 값입니다. 다시 입력해 주세요.\n");
+            throw new CustomException(ErrorMessage.INVALID_INPUT);
         }
     }
 
     private static void validateWorkerNameLengthIsBetween1to5(List<String> scheduleInputList) {
         scheduleInputList.forEach(workerName -> {
             if (workerName.length() > 5 || workerName.isEmpty()) {
-                throw new IllegalArgumentException("[ERROR] 유효하지 않은 입력 값입니다. 다시 입력해 주세요.\n");
+                throw new CustomException(ErrorMessage.INVALID_INPUT);
             }
         });
     }

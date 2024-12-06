@@ -3,7 +3,9 @@ package oncall.model;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import oncall.util.CustomException;
 import oncall.util.DayOfWeek;
+import oncall.util.ErrorMessage;
 import oncall.util.Holiday;
 
 public class Calendar {
@@ -30,7 +32,7 @@ public class Calendar {
         if (endDate31.contains(month)) {
             return 31;
         }
-        throw new IllegalArgumentException("[ERROR] 유효하지 않은 입력 값입니다. 다시 입력해 주세요.\n");
+        throw new CustomException(ErrorMessage.INVALID_INPUT);
     }
 
     public Integer getEndDate() {

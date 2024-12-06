@@ -12,6 +12,8 @@ import oncall.controller.MonthScheduleGenerator;
 import oncall.model.Calendar;
 import oncall.model.HolidaySchedule;
 import oncall.model.WeekDaySchedule;
+import oncall.util.CustomException;
+import oncall.util.ErrorMessage;
 import oncall.util.Holiday;
 import oncall.view.OutputView;
 
@@ -34,7 +36,7 @@ public class Application {
         totalScheduleWorker.addAll(weekDaySchedule.getSchedule());
         totalScheduleWorker.addAll(holidaySchedule.getSchedule());
         if (totalScheduleWorker.size() > 35 || totalScheduleWorker.size() < 5) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 입력 값입니다. 다시 입력해 주세요.");
+            throw new CustomException(ErrorMessage.INVALID_INPUT);
         }
     }
 
@@ -44,7 +46,7 @@ public class Application {
                 String holidayWorkScheduleInput = readHolidayScheduleInput();
                 HolidaySchedule holidaySchedule = new HolidaySchedule(holidayWorkScheduleInput);
                 return holidaySchedule;
-            } catch(IllegalArgumentException e ){
+            } catch(CustomException e ){
                 System.out.println(e.getMessage());
             }
         }
@@ -56,7 +58,7 @@ public class Application {
                 String weekWorkScheduleInput = readWeekScheduleInput();
                 WeekDaySchedule weekDaySchedule = new WeekDaySchedule(weekWorkScheduleInput);
                 return weekDaySchedule;
-            } catch(IllegalArgumentException e ){
+            } catch(CustomException e ){
                 System.out.println(e.getMessage());
             }
         }
@@ -73,7 +75,7 @@ public class Application {
                 String firstDayOfWeek = st.nextToken();
                 Calendar calendar = new Calendar(month, firstDayOfWeek);
                 return calendar;
-            } catch(IllegalArgumentException e) {
+            } catch(CustomException e) {
                 System.out.println(e.getMessage());
             }
         }

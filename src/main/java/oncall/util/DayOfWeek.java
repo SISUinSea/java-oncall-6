@@ -35,14 +35,14 @@ public enum DayOfWeek {
         if (names.containsKey(name)) {
             return names.get(name);
         }
-        throw new IllegalArgumentException("[ERROR] 유효하지 않은 입력 값입니다. 다시 입력해 주세요.\n");
+        throw new CustomException(ErrorMessage.INVALID_INPUT);
     }
 
     public static DayOfWeek getDayOfWeek(Integer id) {
         if (ids.containsKey(id)) {
             return ids.get(id);
         }
-        throw new IllegalArgumentException("[ERROR] 유효하지 않은 입력 값입니다. 다시 입력해 주세요.");
+        throw new CustomException(ErrorMessage.INVALID_INPUT);
     }
 
     public String getName() {

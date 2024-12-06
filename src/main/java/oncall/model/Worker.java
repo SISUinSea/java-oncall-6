@@ -1,5 +1,8 @@
 package oncall.model;
 
+import oncall.util.CustomException;
+import oncall.util.ErrorMessage;
+
 public class Worker {
     private final String name;
 
@@ -10,7 +13,7 @@ public class Worker {
 
     private void validate(String name) {
         if (name.length() > 5) {
-            throw new IllegalArgumentException();
+            throw new CustomException(ErrorMessage.INVALID_INPUT);
         }
     }
 }
