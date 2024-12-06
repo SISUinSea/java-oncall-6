@@ -6,9 +6,11 @@ import java.util.List;
 import java.util.Set;
 
 public class Holiday {
-    private final static List<Set<Integer>> holiday = new ArrayList<>();
+    private static Holiday instance = new Holiday();
+    private static List<Set<Integer>> holiday;
 
-    public Holiday() {
+    private Holiday() {
+        holiday = new ArrayList<>();
         for (int i = 0; i < 12 + 1; i++) {
             holiday.add(new HashSet<>());
         }
@@ -29,16 +31,16 @@ public class Holiday {
 }
 
 /*
-* 1 : 1
-* 2
-* 3 : 1
-* 4
-* 5 : 5
-* 6 : 6
-* 7
-* 8 : 15
-* 9
-* 10 : 3, 9
-* 11
-* 12 : 25
-* */
+ * 1 : 1
+ * 2
+ * 3 : 1
+ * 4
+ * 5 : 5
+ * 6 : 6
+ * 7
+ * 8 : 15
+ * 9
+ * 10 : 3, 9
+ * 11
+ * 12 : 25
+ * */

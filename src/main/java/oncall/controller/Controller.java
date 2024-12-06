@@ -13,13 +13,11 @@ import oncall.model.Calendar;
 import oncall.model.Schedule;
 import oncall.util.CustomException;
 import oncall.util.ErrorMessage;
-import oncall.util.Holiday;
 import oncall.view.OutputView;
 
 public class Controller {
     public static void run() {
         Calendar calendar = getCalendar();
-        Holiday holiday = new Holiday(); // todo enum 주어진 메소드 활용 연습, 이넘으로 바꿨어도 되지 않았을까? // Singleton pattern에 대해서 생각해보기.
         TotalSchedule totalSchedule = getTotalSchedule();
 
         validateScheduleWorker(totalSchedule);
@@ -76,7 +74,7 @@ public class Controller {
     private static Object retry(Supplier supplier) {
         while (true) {
             try {
-                supplier.get();
+                return supplier.get();
             } catch (CustomException e) {
                 System.out.println(e.getMessage());
             }
