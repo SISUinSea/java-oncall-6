@@ -44,7 +44,7 @@ public class Calendar {
     }
 
     public String getDayOfWeekName(Integer day) {
-        return DayOfWeek.getDayOfWeek((firstDayOfWeek.getId() + day - 1) % 7).getName();
+        return DayOfWeek.getDayOfWeek((firstDayOfWeek.ordinal() + day - 1) % 7).getName();
     }
 
     public boolean isHoliday(Integer day) {
