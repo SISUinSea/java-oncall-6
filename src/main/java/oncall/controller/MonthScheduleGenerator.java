@@ -10,6 +10,7 @@ public class MonthScheduleGenerator {
                                                      Deque<String> holidaySchedule) {
         // 일단 구현 먼저! 리팩토링은 나중에!
         List<String> result = new ArrayList<>();
+        result.add(""); // 1-based indexing
         String lastWorker = "";
         for (int i = 1; i <= calendar.getEndDate(); i++) {
             result.add(generateOneDaySchedule(calendar, weekdaySchedule, holidaySchedule, i, lastWorker));
@@ -22,11 +23,7 @@ public class MonthScheduleGenerator {
     private static String generateOneDaySchedule(Calendar calendar, Deque<String> weekdaySchedule,
                                                    Deque<String> holidaySchedule, Integer day, String lastWorker) {
         // 맨 처음이라면 평/휴일을 고려해서 근무 스케쥴 작성하나, 어제 근무한 사람도 생각할 것!
-        String daySchedule = calendar.getMonth() + "월" + " " + day + "일";
-        if (calendar.isWeekDayHoliday(day)) {
-            daySchedule += "(휴일)";
-        }
-        daySchedule +=  " " + calendar.getDayOfWeekName(day) + " ";
+
         String todayWorker = "";
         if (calendar.isHoliday(day)) {
             todayWorker = holidaySchedule.remove();
@@ -42,9 +39,6 @@ public class MonthScheduleGenerator {
             }
         }
 
-        daySchedule += todayWorker;
-        return daySchedule;
+        return todayWorker;
     }
-
-
 }

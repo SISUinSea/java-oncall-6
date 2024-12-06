@@ -13,6 +13,7 @@ import oncall.model.Calendar;
 import oncall.model.HolidaySchedule;
 import oncall.model.WeekDaySchedule;
 import oncall.util.Holiday;
+import oncall.view.OutputView;
 
 public class Application {
 
@@ -25,7 +26,7 @@ public class Application {
         List<String> result = MonthScheduleGenerator.generateMonthSchedule(calendar, weekDaySchedule.getEnoughScheduleAsDeque(),
                 holidaySchedule.getEnoughScheduleAsDeque());
 
-        result.stream().forEach(System.out::println);
+        OutputView.printMonthSchedule(calendar, result);
     }
 
     private static void validateScheduleWorker(WeekDaySchedule weekDaySchedule, HolidaySchedule holidaySchedule) {
