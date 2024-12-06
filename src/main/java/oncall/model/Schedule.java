@@ -2,6 +2,7 @@ package oncall.model;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Deque;
 import java.util.HashSet;
 import java.util.List;
@@ -13,8 +14,7 @@ public class Schedule {
     private List<String> schedule;
 
     public Schedule(String scheduleInput) {
-        List<String> scheduleInputList = new ArrayList<>();
-        scheduleInputList.addAll(List.of(scheduleInput.split(",")));
+        List<String> scheduleInputList = Arrays.stream(scheduleInput.split(",")).toList();
         validate(scheduleInputList);
         this.schedule = scheduleInputList;
     }
