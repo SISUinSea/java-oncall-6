@@ -8,7 +8,7 @@ import oncall.util.Holiday;
 
 public class Calendar {
     private final Integer month;
-    private DayOfWeek firstDayOfWeek;
+    private DayOfWeek firstDayOfWeek;  // todo. 더 공부할 것이 생겼어! >>enum을 좀 더 정밀하게 다룰 수 있어!(김민겸님 코드도 보자)
     private final Integer endDate;
     private final Set<Integer> endDate28 = new HashSet<>(List.of(2));
     private final Set<Integer> endDate31 = new HashSet<>(List.of(1,3,5,7,8,10,12));

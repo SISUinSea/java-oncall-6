@@ -11,7 +11,7 @@ class ApplicationTest extends NsTest {
     private static final String LINE_SEPARATOR = System.lineSeparator();
 
     @Test
-    void 예외_테스트() {
+    void 예외테스트() {
         assertSimpleTest(() -> {
             run("0,일",
                     "4,토",

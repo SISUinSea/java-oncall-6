@@ -39,10 +39,11 @@ public class WeekDaySchedule {
 
     public Deque<String> getEnoughScheduleAsDeque() {
         while (schedule.size() < 31) {
-            Integer size = schedule.size();
-            for (int i = 0 ; i < size; i++) {
-                schedule.add(schedule.get(i));
-            }
+//            Integer size = schedule.size();
+//            for (int i = 0 ; i < size; i++) {
+//                schedule.add(schedule.get(i));
+//            }
+            schedule.addAll(schedule);
         }
         return new ArrayDeque<String>(schedule);
     }

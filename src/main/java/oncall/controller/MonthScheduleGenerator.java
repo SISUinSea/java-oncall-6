@@ -10,31 +10,13 @@ public class MonthScheduleGenerator {
                                                      Deque<String> holidaySchedule) {
         // 일단 구현 먼저! 리팩토링은 나중에!
         List<String> result = new ArrayList<>();
-        result.add(generateFirstDaySchedule(calendar, weekdaySchedule, holidaySchedule));
-        for (int i = 2; i <= calendar.getEndDate(); i++) {
-            String lastWorker = result.get(result.size() - 1);
+        String lastWorker = "";
+        for (int i = 1; i <= calendar.getEndDate(); i++) {
             result.add(generateOneDaySchedule(calendar, weekdaySchedule, holidaySchedule, i, lastWorker));
+            lastWorker = result.get(result.size() - 1);
         }
         System.out.println(result);
         return result;
-    }
-
-    private static String generateFirstDaySchedule(Calendar calendar, Deque<String> weekdaySchedule,
-                                                   Deque<String> holidaySchedule) {
-        // 맨 처음이라면 그냥 평/휴일에 따라서 근무자 추가
-        String daySchedule = calendar.getMonth() + "월" + " " + 1 + "일";
-        if (calendar.isWeekDayHoliday(1)) {
-            daySchedule += "(휴일)";
-        }
-        daySchedule += " " + calendar.getDayOfWeekName(1) + " ";
-        String todayWorker = "";
-        if (calendar.isHoliday(1)) {
-            todayWorker = holidaySchedule.remove();
-        } else {
-            todayWorker = weekdaySchedule.remove();
-        }
-        daySchedule += todayWorker;
-        return daySchedule;
     }
 
     private static String generateOneDaySchedule(Calendar calendar, Deque<String> weekdaySchedule,

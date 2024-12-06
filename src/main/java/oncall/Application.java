@@ -4,13 +4,10 @@ import static oncall.view.InputView.readHolidayScheduleInput;
 import static oncall.view.InputView.readMonthInput;
 import static oncall.view.InputView.readWeekScheduleInput;
 
-import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.StringTokenizer;
-import net.bytebuddy.pool.TypePool.Resolution.Illegal;
 import oncall.controller.MonthScheduleGenerator;
 import oncall.model.Calendar;
 import oncall.model.HolidaySchedule;
@@ -18,9 +15,10 @@ import oncall.model.WeekDaySchedule;
 import oncall.util.Holiday;
 
 public class Application {
+
     public static void main(String[] args) {
         Calendar calendar = getCalendar();
-        Holiday holiday = new Holiday();
+        Holiday holiday = new Holiday(); // todo enum 주어진 메소드 활용 연습, 이넘으로 바꿨어도 되지 않았을까? // 정적 팩토리 메소드에 대해서도 생각해보기
         WeekDaySchedule weekDaySchedule = getWeekDaySchedule();
         HolidaySchedule holidaySchedule = getHolidaySchedule();
         validateScheduleWorker(weekDaySchedule, holidaySchedule);
