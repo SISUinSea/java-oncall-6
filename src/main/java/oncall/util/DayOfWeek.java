@@ -7,18 +7,20 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public enum DayOfWeek {
-    SUNDAY("일" ),
-    MONDAY("월"),
-    TUESDAY("화"),
-    WEDNESDAY("수"),
-    THURSDAY("목"),
-    FRIDAY("금"),
-    SATURDAY("토");
+    SUNDAY("일", true),
+    MONDAY("월", false),
+    TUESDAY("화", false),
+    WEDNESDAY("수", false),
+    THURSDAY("목", false),
+    FRIDAY("금", false),
+    SATURDAY("토", true);
 
     private String name;
+    private boolean isWeekend;
 
-    DayOfWeek(String name) {
+    DayOfWeek(String name, boolean isWeekend) {
         this.name = name;
+        this.isWeekend = isWeekend;
     }
 
     private static final Map<String, DayOfWeek> names =
@@ -47,10 +49,8 @@ public enum DayOfWeek {
         return name;
     }
 
-
-    public boolean isWeekend(DayOfWeek dayOfWeek) {
-        return dayOfWeek.name.equals("토") || dayOfWeek.name.equals("일");
+    public boolean isWeekend() {
+        return isWeekend;
     }
-
 
 }

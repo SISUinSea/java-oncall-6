@@ -10,8 +10,7 @@ import java.util.Set;
 import java.util.StringTokenizer;
 import oncall.controller.MonthScheduleGenerator;
 import oncall.model.Calendar;
-import oncall.model.HolidaySchedule;
-import oncall.model.WeekDaySchedule;
+import oncall.model.Schedule;
 import oncall.util.CustomException;
 import oncall.util.ErrorMessage;
 import oncall.util.Holiday;
@@ -22,8 +21,8 @@ public class Application {
     public static void main(String[] args) {
         Calendar calendar = getCalendar();
         Holiday holiday = new Holiday(); // todo enum 주어진 메소드 활용 연습, 이넘으로 바꿨어도 되지 않았을까? // 정적 팩토리 메소드에 대해서도 생각해보기
-        WeekDaySchedule weekDaySchedule = getWeekDaySchedule();
-        HolidaySchedule holidaySchedule = getHolidaySchedule();
+        Schedule weekDaySchedule = getWeekDaySchedule();
+        Schedule holidaySchedule = getHolidaySchedule();
         validateScheduleWorker(weekDaySchedule, holidaySchedule);
         List<String> result = MonthScheduleGenerator.generateMonthSchedule(calendar, weekDaySchedule.getEnoughScheduleAsDeque(),
                 holidaySchedule.getEnoughScheduleAsDeque());
@@ -31,7 +30,7 @@ public class Application {
         OutputView.printMonthSchedule(calendar, result);
     }
 
-    private static void validateScheduleWorker(WeekDaySchedule weekDaySchedule, HolidaySchedule holidaySchedule) {
+    private static void validateScheduleWorker(Schedule weekDaySchedule, Schedule holidaySchedule) {
         Set<String> totalScheduleWorker = new HashSet<>();
         totalScheduleWorker.addAll(weekDaySchedule.getSchedule());
         totalScheduleWorker.addAll(holidaySchedule.getSchedule());
@@ -40,24 +39,22 @@ public class Application {
         }
     }
 
-    private static HolidaySchedule getHolidaySchedule() {
+    private static Schedule getHolidaySchedule() {
         while(true) {
             try {
                 String holidayWorkScheduleInput = readHolidayScheduleInput();
-                HolidaySchedule holidaySchedule = new HolidaySchedule(holidayWorkScheduleInput);
-                return holidaySchedule;
+                return new Schedule(holidayWorkScheduleInput);
             } catch(CustomException e ){
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private static WeekDaySchedule getWeekDaySchedule() {
+    private static Schedule getWeekDaySchedule() {
         while(true) {
             try {
                 String weekWorkScheduleInput = readWeekScheduleInput();
-                WeekDaySchedule weekDaySchedule = new WeekDaySchedule(weekWorkScheduleInput);
-                return weekDaySchedule;
+                return new Schedule(weekWorkScheduleInput);
             } catch(CustomException e ){
                 System.out.println(e.getMessage());
             }
