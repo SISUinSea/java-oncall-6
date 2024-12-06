@@ -21,8 +21,7 @@ public class Controller {
         TotalSchedule totalSchedule = getTotalSchedule();
 
         validateScheduleWorker(totalSchedule);
-        List<String> result = MonthScheduleGenerator.generateMonthSchedule(calendar,
-                totalSchedule);
+        List<String> result = MonthScheduleGenerator.generateMonthSchedule(calendar, totalSchedule);
 
         OutputView.printMonthSchedule(calendar, result);
     }
@@ -66,8 +65,7 @@ public class Controller {
             StringTokenizer st = new StringTokenizer(monthInput, ",");  // 예외 처리 해야 함
             Integer month = Integer.parseInt(st.nextToken());
             String firstDayOfWeek = st.nextToken();
-            Calendar calendar = new Calendar(month, firstDayOfWeek);
-            return calendar;
+            return new Calendar(month, firstDayOfWeek);
         });
     }
 
